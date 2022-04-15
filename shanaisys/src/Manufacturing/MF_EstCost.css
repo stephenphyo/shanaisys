@@ -1,0 +1,182 @@
+@font-face {
+    font-family: "Helvetica Neue";
+    src: local("../public/fonts/HelveticaNeue Medium.ttf");
+  }
+
+  :root {
+    --table-label-font-size: 15px;
+    --table-input-height: 35px;
+    --table-tbody-max-height: 165px;
+  }
+
+.table {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    overflow: hidden;
+    font-family: "Helvetica Neue";
+}
+
+.table__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 35px;
+    padding: 12px 0;
+    border-bottom: 1px solid lightgray;
+}
+
+.table__row:last-child {
+    border: none;
+}
+
+.table__row.left {
+    width: 40%;
+    border-right: 1px solid lightgray;
+}
+
+.table__row.right {
+    width: 60%;
+}
+
+.table__row label {
+    font-size: var(--table-label-font-size);
+    font-weight: bold;
+    padding: 0 5px;
+    line-height: 22px;
+}
+
+.table__row input {
+    width: 85%;
+    font-size: var(--input-font-size);
+}
+
+.tbody {
+    max-height: var(--table-tbody-max-height);
+    overflow-y: scroll;
+}
+
+.tr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 55px;
+}
+
+.tr:not(:last-child) {
+    border-bottom: 1px solid lightgray;
+}
+
+.td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.td:not(:last-child) {
+    border-right: 1px solid lightgray;
+}
+
+.first {
+    width: 10%;
+}
+
+.second {
+    padding: 0 20px;
+    box-sizing: border-box;
+    width: 45%;
+}
+
+.third {
+    padding: 0 20px;
+    box-sizing: border-box;
+    width: 35%;
+}
+
+.fourth {
+    width: 10%;
+}
+
+.fifth {
+    width: 50%;
+}
+
+.sixth {
+    width: 25%;
+}
+
+.display {
+    display: flex;
+    align-items: center;
+    height: var(--table-input-height);
+    width: 70%;
+    border-radius: 5px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: gray;
+    background-color:  lightgray;
+}
+
+.td svg {
+    cursor: pointer;
+}
+
+.td #add_button {
+    font-size: 24px;
+}
+
+.td #add_button:hover {
+    color: green;
+}
+
+.td #del_button {
+    font-size: 22px;
+    color: rgba(222, 0, 0, 1);
+}
+
+.td #del_button:hover {
+    color: rgba(222, 0, 0, 0.7);
+}
+
+#total {
+    margin-top: 15px;
+}
+
+.form__row__right {
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    justify-content: right;
+    width: 55%;
+    height: fit-content;
+    margin-left: 49.5%;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.form__row__right .display {
+    width: 98%;
+}
+
+#red {
+    color: red;
+}
+
+@media (max-width: 800px) {
+    .form__row__right {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-left: 0;
+        padding: 10px 0;
+        box-sizing: border-box;
+    }
+}

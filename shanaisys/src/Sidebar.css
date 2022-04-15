@@ -13,11 +13,10 @@
   display: flex;
   flex-direction: column;
   width: var(--sidebar-width);
-  /* min-width: var(--sidebar-width-min); */
   margin: 0;
   margin-left: calc(var(--sidebar-width) * -1);
   color: lightgreen;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(61, 61, 61, 1);
   font-family: "Helvetica Neue";
   overflow-y:hidden;
   user-select: none;
@@ -30,7 +29,6 @@
 
 .sidebar ul {
   width: 100%;
-  /* background-color: green; */
 }
 
 .sidebar li#small {
@@ -61,4 +59,13 @@
 .sidebar li:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 1);
+}
+
+@media (max-width: 800px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    z-index: 1000;
+    height: calc(100vh - var(--header-height));
+  }
 }

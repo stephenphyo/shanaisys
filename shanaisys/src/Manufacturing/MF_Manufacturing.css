@@ -5,6 +5,7 @@
 
 :root {
     --font1: "Helvetica Neue";
+    --button-font-size: 16px;
 }
 
 .manufacture {
@@ -43,6 +44,7 @@
 .manufacture__body {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 30px;
     padding: 20px;
 }
@@ -90,7 +92,7 @@
     border-radius: 5px;
     padding: 0 10px;
     font-family: var(--font1);
-    font-size: 18px;
+    font-size: var(--button-font-size);
     cursor: pointer;
     transition: 0.25s;
 }
@@ -107,4 +109,15 @@
 .black {
     color: white;
     background-color: black;
+}
+
+@media (max-width: 800px) {
+    .manufacture__body {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .manufacture__col {
+        width: 60%;
+    }
 }

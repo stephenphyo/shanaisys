@@ -7,6 +7,7 @@ import './App.css';
 // Manufacturing
 import MF_Manufacturing from './Manufacturing/MF_Manufacturing';
 import MF_Inquiry from './Manufacturing/MF_Inquiry';
+import MF_EstCost from './Manufacturing/MF_EstCost';
 
 /* Component Imports */
 import Home from './Home';
@@ -41,6 +42,7 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/manufacturing' element={ <MF_Manufacturing /> }/>
               <Route path='/manufacturing/inquiry' element={ <MF_Inquiry /> }/>
+              <Route path='/manufacturing/estcost' element={ <MF_EstCost /> }/>
             </Routes>
           </div>
           </div>

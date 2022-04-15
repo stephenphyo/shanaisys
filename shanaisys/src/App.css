@@ -40,10 +40,6 @@
     /* background-color: #ffcd3c; */
 }
 
-.app__header__menu.reveal {
-    width: var(--sidebar-width);
-}
-
 .app__header__menu button {
     display: flex;
     align-items: center;
@@ -56,7 +52,16 @@
 }
 
 .app__header__menu svg {
+    margin-left: 30px;
     font-size: 25px;
+}
+
+.app__header__menu.reveal {
+    width: var(--sidebar-width);
+}
+
+.app__header__menu.reveal svg {
+    margin-left: 0;
 }
 
 .app__body {
