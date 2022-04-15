@@ -1,0 +1,121 @@
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("../public/fonts/HelveticaNeue Medium.ttf");
+}
+
+.slogin__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 50px);
+  font-family: "Helvetica Neue";
+  background-color: rgba(185, 177, 177, 0.5);
+}
+
+.slogin__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 53%;
+  max-width: 400px;
+  height: fit-content;
+  padding: 50px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  gap: 20px;
+  background-color: white;
+}
+
+.slogin__header {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  gap: 10px;
+}
+
+.slogin__header p#large {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.slogin__header p#small {
+  font-size: 20px;
+}
+
+.slogin__infoBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+
+.slogin__info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 35px;
+  padding: 1px;
+}
+
+.slogin__info__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  border: 1px solid lightgray;
+  border-radius: 5px 0 0 5px;
+  background-color: lightgray;
+}
+
+.slogin__info__icon svg {
+  font-size: 20px;
+}
+
+.slogin__info input {
+  flex: 1;
+  height: 100%;
+  padding-left: 10px;
+  border: 1px solid lightgray;
+  border-radius: 0 5px 5px 0;
+  transition: 0.2s;
+}
+
+.slogin__info input:focus {
+  border-color: #8ad4ee;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(32 168 216 / 25%);
+}
+
+.slogin__remember {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+}
+
+.slogin__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.slogin__button button {
+  width: 30%;
+  border: none;
+  height: 35px;
+  color: white;
+  border-radius: 5px;
+  background-color: rgba(76, 139, 245);
+  transition: 0.25s;
+}
+
+.slogin__button button:hover {
+  width: 35%;
+  cursor: pointer;
+}
