@@ -6,8 +6,9 @@ import './App.css';
 
 // Manufacturing
 import MF_Manufacturing from './Manufacturing/MF_Manufacturing';
-import MF_Inquiry from './Manufacturing/MF_Inquiry';
-import MF_EstCost from './Manufacturing/MF_EstCost';
+import MF_Inquiry from './Manufacturing/Order Inquiry/MF_Inquiry';
+import MF_EstCost_Create from './Manufacturing/Estimated Cost/MF_EstCost_Create';
+import MF_EstCost_View from './Manufacturing/Estimated Cost/MF_EstCost_View';
 
 /* Component Imports */
 import Home from './Home';
@@ -42,7 +43,8 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/manufacturing' element={ <MF_Manufacturing /> }/>
               <Route path='/manufacturing/inquiry' element={ <MF_Inquiry /> }/>
-              <Route path='/manufacturing/estcost' element={ <MF_EstCost /> }/>
+              <Route path='/manufacturing/estcost/create' element={ <MF_EstCost_Create /> }/>
+              <Route path='/manufacturing/estcost/view' element={ <MF_EstCost_View /> }/>
             </Routes>
           </div>
           </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import './FormTemplate.css';
+import '../FormTemplate.css';
 
 function MF_form() {
 

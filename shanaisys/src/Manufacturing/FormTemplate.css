@@ -13,6 +13,7 @@
 
 .form {
   display: flex;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   height: fit-content;
@@ -25,7 +26,7 @@
   display: flex;
   flex-direction: column;
   width: 95%;
-  height: 95%;
+  height: 100%;
   margin: 30px 0;
   overflow: hidden;
   border: 1px solid gray;
@@ -53,11 +54,6 @@
   max-width: 100%;
   padding: 15px 5px;
   box-sizing: border-box;
-}
-
-.form__body input, select {
-  font-family: "Helvetica Neue";
-  font-size: var(--input-font-size);
 }
 
 .form__row {
@@ -102,6 +98,8 @@
   padding: 0 10px 0 15px;
   border: 1px solid lightgray;
   border-radius: 5px;
+  font-family: "Helvetica Neue";
+  font-size: var(--input-font-size);
   transition: 0.15s;
 }
 
@@ -113,6 +111,34 @@
 
 .form__info select:invalid {
   color: gray;
+}
+
+.form__info__error {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "Merriweather";
+  font-size: 11px;
+  color: darkred;
+}
+
+.form__info__error svg {
+  margin-left: 5px;
+  margin-right: 4px;
+  font-size: 14px;
+  color: darkrednin;
+}
+
+.error input, .error select {
+  border-color: darkred;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(255 0 0 / 50%);
+}
+
+.error input:focus, .error select:focus {
+  border-color: #8ad4ee;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(32 168 216 / 25%);
 }
 
 .footer {
@@ -142,6 +168,11 @@
 .footer button#cancel {
   color: lightgray;
   background-color: #d63031;
+}
+
+.required {
+  margin-left: 5px;
+  color: red;
 }
 
 @media (max-width: 800px) {

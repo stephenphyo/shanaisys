@@ -26,7 +26,7 @@ function MF_Manufacturing() {
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/estcost')}>
+                                onClick={() => navigate('/manufacturing/estcost/view')}>
                                 Estimated Cost
                             </button>
                             <button
