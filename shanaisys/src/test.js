@@ -1,4 +1,3 @@
-let arr = {'a': 1, 'b': 2, 'c': 3}
+arr = [1, 2, 3, 4, 5, 6, 6, 7, 8, 8, 9]
 
-
-console.log(arr.reduce((prev, cur) => prev + cur, 0))
+console.log(arr.slice(0, 5))

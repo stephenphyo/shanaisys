@@ -54,12 +54,13 @@ const usersCtrl = {
                             } else {
                                 res.status(401).send({ message: "Email Address Not Found" });
                             }
-                            conn.release();
+
                         } else {
                             res.status(500).send(err.message);
                         }
                     }
                 );
+                conn.release();
             } else {
                 res.status(500).send(err.message);
             }

@@ -1,0 +1,308 @@
+@font-face {
+    font-family: "Helvetica Neue";
+    src: local("../public/fonts/HelveticaNeue Medium.ttf");
+}
+
+:root {
+    --header-font-size: 15px;
+    --label-font-size: 14px;
+    --input-font-size: 14px;
+    --input-height: 35px;
+    --button-height: 35px;
+}
+
+.index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    min-height: calc(100vh - var(--header-height));
+    font-family: "Helvetica Neue";
+    background-color: rgba(207, 200, 200, 0.5);
+}
+
+.index__controller {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    height: fit-content;
+    margin-top: 20px;
+    box-sizing: border-box;
+    gap: 20px;
+    /* background-color: yellow; */
+}
+
+.index__controller button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--button-height);
+    width: 120px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.index__controller .addEntry {
+    background-color: #90ee90;
+}
+
+.index__controller .returnBack {
+    background-color: darkgray;
+}
+
+.index__content {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: 100%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: var(--label-font-size);
+    background-color: white;
+}
+
+.index__header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    padding-left: 20px;
+    box-sizing: border-box;
+    font-size: var(--header-font-size);
+    border-bottom: 1px solid gray;
+    background-color: rgba(217, 229, 233, 0.9);
+}
+
+.index__header p {
+    flex: 1;
+}
+
+.index__header .refresh svg {
+    margin-right: 25px;
+}
+
+.index__header .refresh svg:hover {
+    cursor: pointer;
+    color: skyblue;
+    transform: rotate(360deg);
+    transition: 1s;
+}
+
+.index__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 5px 30px 5px;
+    box-sizing: border-box;
+}
+
+.index__page__bar {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 95%;
+    height: fit-content;
+    padding: 0 10px;
+    box-sizing: border-box;
+    gap: 15px;
+    /* background-color: yellow; */
+}
+
+.index__page__bar input, select {
+    transition: 0.25s;
+}
+
+.index__page__bar input:focus, select:focus {
+    border-color: #8ad4ee;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(32 168 216 / 25%);
+}
+
+.index__page__show {
+    flex: 1;
+}
+
+.index__page__rows select {
+    height: 25px;
+    padding: 3px 2px 3px 5px;
+}
+
+.index__page__nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* background-color: pink; */
+}
+
+.index__page__nav svg {
+    font-size: 17px;
+}
+
+.index__page__nav svg:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.index__page__nav input {
+    height: 25px;
+    width: 40px;
+    margin: 0 5px;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+}
+
+.index__table {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: fit-content;
+    margin-top: 20px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    font-family: "Helvetica Neue";
+}
+
+.index__table__scroll {
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: scroll;
+}
+
+.index__thead {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    width: fit-content;
+    height: 55px;
+    font-weight: bold;
+    box-sizing: border-box;
+    border-bottom: 1px solid lightgray;
+    background-color: rgba(185, 185, 185, 0.8);
+}
+
+.index__tbody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    box-sizing: border-box;
+}
+
+.index__tr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    height: 40px;
+    /* border-bottom: 1px solid lightgray; */
+}
+
+.index__tr:not(:last-child) {
+    border-bottom: 1px solid lightgray;
+}
+
+.index__td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    line-height: 20px;
+    gap: 10px;
+}
+
+.index__td:not(:last-child) {
+    border-right: 1px solid lightgray;
+}
+
+.index__td__status {
+    width: 100%;
+    height: 50%;
+    font-size: 9px;
+    border-radius: 5px;
+    color: white;
+    overflow: hidden;
+}
+
+.index__td__status #appr {
+    background-color: green;
+}
+
+.index__td__status #not_appr {
+    background-color: red;
+}
+
+.action {
+    position: relative;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.action::before {
+    content: attr(tooltip);
+    display: none;
+    position: absolute;
+    top: -25px;
+    left: -10px;
+    padding: 3px 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    z-index: 1;
+}
+
+.action:hover::before {
+    display: block;
+ }
+
+ .action:hover #view {
+    color: green;
+ }
+
+ .action:hover #delete {
+    color: red;
+ }
+
+.index__table__scroll::-webkit-scrollbar {
+    width: 1px;
+    height: 8px;
+}
+
+.index__table__scroll::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+}
+.index__table__scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+.index__table__scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+.index__table__scroll::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.7);
+}

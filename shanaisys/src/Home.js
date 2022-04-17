@@ -1,110 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router';
-import './Home.css';
+import './FormTemplate.css';
 
-/* MUI Imports */
-import HomeIcon from '@mui/icons-material/Home';
-import GroupsIcon from '@mui/icons-material/Groups';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import FactoryIcon from '@mui/icons-material/Factory';
-import BusinessIcon from '@mui/icons-material/Business';
-
-function Inquiry() {
+function Home() {
 
     /* useNavigate */
     const navigate = useNavigate();
 
     return (
-        <div className='home'>
-            <div className="home__content">
-                <div className="home__header">
-                    <p>Make an Inquiry</p>
+        <div className="form">
+            <div className="form__content">
+                <div className="form__header">
+                    <p>Welcome to Shanaisys Company</p>
                 </div>
-                <div className="home__body">
-                    <div className="home__row">
-                        <div className="home__info">
-                            <label>Inquiry Degree</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                        <div className="home__info">
-                            <label>Input Date</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
+                <div className="form__body">
+                    <div className="form__row" style={{ justifyContent: 'center' }}>
+                        We are at your service 😊
                     </div>
-                    <div className="home__row">
-                        <div className="home__info">
-                            <label>Person In Charge</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                        <div className="home__info">
-                            <label>Department Number</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                    </div>
-                    <div className="home__row">
-                        <div className="home__info">
-                            <label>Customer</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                        <div className="home__info">
-                            <label>Customer Contact Number</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                    </div>
-                    <div className="home__row">
-                        <div className="home__info">
-                            <label>Delivery Destination</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                        <div className="home__info">
-                            <label>Department Name</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                    </div>
-                    <div className="home__row">
-                        <div className="home__info">
-                            <label>Title</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                    </div>
-                    <div className="home__row">
-                        <div className="home__info">
-                            <label>Desired Delivery Date</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                        <div className="home__info">
-                            <label>Estimated Delivery Date</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                        <div className="home__info">
-                            <label>Amount Type</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                        <div className="home__info">
-                            <label>Desired Amount</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                    </div>
-                    <div className="home__row">
-                        <div className="home__info">
-                            <label>Remarks</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                    </div>
-                    <div className="home__row">
-                        <div className="home__info">
-                            <label>Specifications</label>
-                            <input type='select' placeholder='--Select--' />
-                        </div>
-                    </div>
-                    <div className="home__row footer">
-                        <button id='save'>SAVE</button>
-                        <button id='cancel'>CANCEL</button>
-                    </div>
+                    <label id='footer'style={{position: 'fixed', bottom: '20px', width: '95%', textAlign: 'center' }}>
+                        This system is redeisgned and developed by
+                        <span style={{fontWeight: 'bold', color: 'red'}}> Stephen Phyo</span> with
+                        <span style={{fontWeight: 'bold', color: 'green'}}> Steven Chen</span> based on the project of
+                        <span style={{fontWeight: 'bold', color: 'magenta'}}> Phyu Phyu Thaw</span>
+                    </label>
                 </div>
             </div>
         </div>
     );
 }
 
-export default Inquiry;
+export default Home;

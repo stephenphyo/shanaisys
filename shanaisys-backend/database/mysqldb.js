@@ -8,7 +8,7 @@ const mysqlConn = mysql.createConnection(require('./mysql_settings'));
 /* Database Connection Testing */
 mysqlConn.connect ((err) => {
     if (!err) {
-        console.log(`Successfully connected to MySQL => Database => amazonia`);
+        console.log(`Successfully connected to MySQL => Database => shanaisys`);
     }
 });
 mysqlConn.end();
