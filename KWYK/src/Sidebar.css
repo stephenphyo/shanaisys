@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("../public/fonts/HelveticaNeue Medium.ttf");
+}
+
+:root {
+  --header-height: 55px;
+  --sidebar-width: 200px;
+  --sidebar-width-min: 200px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: var(--sidebar-width);
+  /* min-width: var(--sidebar-width-min); */
+  margin: 0;
+  margin-left: calc(var(--sidebar-width) * -1);
+  color: lightgreen;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-family: "Helvetica Neue";
+  overflow-y:hidden;
+  user-select: none;
+  transition: margin 0.25s;
+}
+
+.sidebar.sidebarOpen {
+  margin-left: 0;
+}
+
+.sidebar ul {
+  width: 100%;
+  /* background-color: green; */
+}
+
+.sidebar li#small {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 10px;
+  gap: 4px;
+  transition: 0.25s;
+}
+
+.sidebar li#big {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  padding: 0 10px;
+  line-height: 20px;
+  gap: 7px;
+  font-size: 15px;
+  transition: 0.25s;
+}
+
+.sidebar svg {
+  color: darkgray;
+  font-size: 20px;
+}
+
+.sidebar li:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 1);
+}
