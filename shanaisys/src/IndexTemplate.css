@@ -22,6 +22,12 @@
     background-color: rgba(207, 200, 200, 0.5);
 }
 
+.index input:focus, .index select:focus {
+    border-color: #8ad4ee;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(32 168 216 / 25%);
+}
+
 .index__controller {
     display: flex;
     flex-direction: row;
@@ -120,14 +126,20 @@
     /* background-color: yellow; */
 }
 
-.index__page__bar input, select {
+.index__page__bar input, .index__page__bar select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: 150px;
+    height: 28px;
+    padding: 3px 15px;
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    font-family: "Helvetica Neue";
+    font-size: 13.5px;
     transition: 0.25s;
-}
-
-.index__page__bar input:focus, select:focus {
-    border-color: #8ad4ee;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgb(32 168 216 / 25%);
 }
 
 .index__page__show {
@@ -166,6 +178,58 @@
     box-sizing: border-box;
     font-family: "Helvetica Neue";
     font-size: 14px;
+}
+
+.index__filter__bar {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    width: 95%;
+    height: fit-content;
+    padding: 15px 10px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    border-radius: 10px;
+    gap: 10px;
+    background-color: skyblue;
+}
+
+.index__filter__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+.index__filter__box {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    width: 25%;
+    gap: 5px;
+    /* background-color: aqua; */
+}
+
+.index__filter__box label{
+    margin-left: 5px;
+}
+
+.index__filter__box input, .index__filter__box select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 150px;
+    height: 28px;
+    padding: 3px 10px;
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    font-family: "Helvetica Neue";
+    font-size: 13.5px;
+    transition: 0.25s;
 }
 
 .index__table {
@@ -234,6 +298,10 @@
 
 .index__td:not(:last-child) {
     border-right: 1px solid lightgray;
+}
+
+.index__thead .index__td:not(:last-child) {
+    border-right: 1px solid white;
 }
 
 .index__td__status {

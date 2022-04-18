@@ -3,7 +3,6 @@
 # dependencies
 /node_modules
 /src/test.js
-/src/seed1.json
 /.pnp
 .pnp.js
 

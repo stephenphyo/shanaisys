@@ -121,3 +121,25 @@
         width: 60%;
     }
 }
+
+@media (max-width: 520px) {
+    .manufacture__col {
+        width: 80%;
+    }
+
+    .manufacture__col__body button {
+        font-size: calc(var(--button-font-size) - 1px);
+    }
+}
+
+@media (max-width: 400px) {
+    .manufacture__col__body button {
+        width: 75%;
+        font-size: calc(var(--button-font-size) - 2px);
+    }
+
+    .manufacture__col__body button:hover {
+        width: 80%;
+    }
+}
+

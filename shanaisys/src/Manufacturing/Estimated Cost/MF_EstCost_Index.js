@@ -24,12 +24,14 @@ const reducer = (state, action) => {
             return { ...state, loading: false, results: action.payload }
         case 'FETCH_FAILED':
             return { ...state, loading: false, error: action.payload }
+        case 'FILTER_RESULT':
+            return { ...state, loading: false, filter_results: action.payload }
         default:
             return state
     }
 };
 
-const initialState = { loading: false, results: [], error: '' };
+const initialState = { loading: false, results: [], filter_results: [], error: '' };
 
 function MF_EstCost_Index() {
 
@@ -37,12 +39,16 @@ function MF_EstCost_Index() {
     const navigate = useNavigate('');
 
     /* useReducer */
-    const [{ loading, results }, dispatch] = useReducer(reducer, initialState);
+    const [{ loading, results, filter_results }, dispatch] = useReducer(reducer, initialState);
 
     /* useState */
     const [pageRows, setPageRows] = useState(10);
+    const [totalRecords, setTotalRecords] = useState(0);
     const [curPage, setCurPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    const [filterObj, setFilterObj] = useState({
+        customer_name: ''
+    });
 
     /* Functions */
     const fetch = () => {
@@ -50,6 +56,7 @@ function MF_EstCost_Index() {
             .get('/manufacturing/estcost/index')
             .then((res) => {
                 dispatch({ type: 'FETCH_SUCCESS', payload: res.data });
+                dispatch({ type: 'FILTER_RESULT', payload: res.data });
             })
             .catch((err) => {
                 dispatch({ type: 'FETCH_FAILED', payload: err.message });
@@ -86,9 +93,10 @@ function MF_EstCost_Index() {
     }, []);
 
     useEffect(() => {
-        const totalRecords = results.length;
-        setTotalPages(Math.ceil(totalRecords / pageRows));
-    }, [results, pageRows, curPage]);
+        const curTotalRecords = filter_results.length;
+        setTotalRecords(curTotalRecords);
+        setTotalPages(Math.ceil(curTotalRecords / pageRows));
+    }, [results, pageRows, curPage, filterObj, filter_results]);
 
     useEffect(() => {
         console.log(curPage)
@@ -98,7 +106,20 @@ function MF_EstCost_Index() {
                 setCurPage(totalPages);
             }
         }
-    }, [totalPages]);
+    }, [totalPages, filterObj]);
+
+    useEffect(() => {
+        const newResults = results.filter((result) =>
+            result.company_name_1.includes(filterObj.customer_name)
+            && result.customer_approved === filterObj.customer_proved
+        );
+        dispatch({ type: 'FILTER_RESULT', payload: newResults });
+
+        // Debugging
+        console.log(filterObj)
+        console.log(results);
+        console.log(newResults);
+    }, [filterObj]);
 
     return (
         <div className='index'>
@@ -124,7 +145,10 @@ function MF_EstCost_Index() {
                 <div className="index__body">
                     <div className="index__page__bar">
                         <div className="index__page__show">
-                            <p>{`${curPage} out of ${totalPages} pages`}</p>
+                            <p>
+                                {`${curPage} out of ${totalPages} pages`}
+                                <span>{`(${totalRecords} records)`}</span>
+                            </p>
                         </div>
                         <div className="index__page__rows">
                             <select onChange={(e) => setPageRows(e.target.value)}>
@@ -148,6 +172,36 @@ function MF_EstCost_Index() {
                                 onClick={() => setCurPage(curPage + 5 > totalPages ? totalPages : curPage + 5)} />
                         </div>
                     </div>
+                    <div className="index__filter__bar">
+                        <div className="index__filter__row">
+                            <div className="index__filter__box">
+                                <label>Customer Approved</label>
+                                <select onChange={(e) => setFilterObj({...filterObj, customer_proved: e.target.value})}>
+                                    <option value='' hidden>Approved?</option>
+                                    <option value='Y'>Yes</option>
+                                    <option value='NO'>No</option>
+                                </select>
+                            </div>
+                            <div className="index__filter__box">
+                                <label>Customer Name</label>
+                                <input
+                                    type='text'
+                                    placeholder='Customer Name'
+                                    value={filterObj.customer_name}
+                                    onChange={(e) => setFilterObj({ ...filterObj, customer_name: e.target.value })} />
+                            </div>
+                        </div>
+                        <div className="index__filter__row">
+                            <div className="index__filter__box">
+                                <label>Customer Approved</label>
+                                <select>
+                                    <option value='' hidden>Approved?</option>
+                                    <option value='Y'>Yes</option>
+                                    <option value='NO'>No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div className="index__table">
                         <div className="index__table__scroll">
                             <div className="index__thead">
@@ -167,7 +221,7 @@ function MF_EstCost_Index() {
                                 {
                                     loading
                                         ? (<LoadingPage loading={loading} />)
-                                        : results.length === 0
+                                        : filter_results.length === 0
                                             ? (
                                                 <div className="index__tr">
                                                     <div className="index__td" style={{ width: '100%', paddingLeft: '20px' }}>
@@ -175,7 +229,7 @@ function MF_EstCost_Index() {
                                                     </div>
                                                 </div>
                                             )
-                                            : (results.slice(pageRows*(curPage-1), pageRows*curPage).map((result, index) => (
+                                            : (filter_results.slice(pageRows*(curPage-1), pageRows*curPage).map((result, index) => (
                                                 <div className="index__tr" key={index}>
                                                     <div className="index__td" style={{ width: '50px' }}>{(curPage - 1) * pageRows + index + 1}</div>
                                                     <div className="index__td" style={{ width: '300px' }}>{result.company_name_1}</div>

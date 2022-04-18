@@ -93,7 +93,7 @@
   width: 25%;
 }
 
-.form__info input, select {
+.form__info input, .form__info select {
   height: var(--input-height);
   width: 100%;
   box-sizing: border-box;
