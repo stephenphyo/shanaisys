@@ -1,0 +1,2 @@
+INSERT INTO inquiries 
+(`inquiry_degree`, `employee_id`, `contact_name`, `department_id`, `department_name`, `customer_id`, `customer_name`, `customer_contact_name`, `delivery_destination_id` , `delivery_name`, `delivery_person_name`, `title`, `article_number`, `article_name`, `quantity`, `desired_delivery_date`, `estimated_delivery_date`, `amount_type`, `desired_amount `, `remarks`, `specifications`, `input_date`, `status`, `updated_at`, `created_at`) VALUES 
