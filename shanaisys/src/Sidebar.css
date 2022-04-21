@@ -31,34 +31,47 @@
   width: 100%;
 }
 
+.sidebar ul svg {
+  color: darkgray;
+  font-size: 20px;
+}
+
+.sidebar li {
+  transition: background 0.5s;
+}
+
 .sidebar li#small {
   display: flex;
   align-items: center;
   height: 50px;
   padding: 0 10px;
   gap: 4px;
-  transition: 0.25s;
 }
 
 .sidebar li#big {
   display: flex;
   align-items: center;
-  height: 70px;
+  height: 60px;
   padding: 0 10px;
-  line-height: 20px;
+  line-height: 22px;
   gap: 7px;
   font-size: 15px;
-  transition: 0.25s;
-}
-
-.sidebar svg {
-  color: darkgray;
-  font-size: 20px;
 }
 
 .sidebar li:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 1);
+}
+
+.sidebar li.selected {
+  color: black;
+  font-style: italic;
+  border-radius: 25px 0 0 25px;
+  background-color: rgba(200, 200, 200, 1);
+}
+
+.sidebar li.selected svg {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 800px) {

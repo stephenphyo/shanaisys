@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Axios from '../../utils/Axios';
-import '../../FormTemplate.css';
+import Axios from '../../../utils/Axios';
+import '../../../FormTemplate.css';
 import './MF_EstCost_Create.css';
 
 /* test */
-import seeds from '../../seed1.json';
+import seeds from '../../../seed1.json';
 
 /* MUI Imports */
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -84,8 +84,9 @@ function MF_EstCost_Create() {
 
     useEffect(() => {
         setProdCost(round5(varCost + manpowerCost));
-        setSalePrice(round5(prodCost * 1.25));
-    }, [manpowerCost, varCost, prodCost]);
+        setSalePrice(round5(prodCost * multiplier));
+        setProfitExp(round5(salePrice - prodCost));
+    }, [manpowerCost, varCost, prodCost, multiplier, salePrice]);
 
 
     useEffect(() => {
@@ -182,7 +183,7 @@ function MF_EstCost_Create() {
                 .post('/manufacturing/estcost/create', result)
                 .then((res) => {
                     console.log(res);
-                    navigate('/manufacturing/estcost/index');
+                    navigate('/manufacturing/businessinfo/estcost/index');
                 })
                 .catch((err) => {
                     console.log(err);
@@ -507,7 +508,7 @@ function MF_EstCost_Create() {
                             <input
                                 type='text'
                                 placeholder='Multiplier'
-                                onChange={(e) => setMultiplier(e.target.value)} />
+                                onChange={(e) => setMultiplier(e.target.value === '' ? 0 : parseFloat(e.target.value))} />
                         </div>
                     </div>
                     <div className="form__row">
@@ -537,7 +538,11 @@ function MF_EstCost_Create() {
                     </div>
                     <div className="form__row footer">
                         <button id='save' onClick={() => save()}>SAVE</button>
-                        <button id='cancel' onClick={() => navigate('/manufacturing/estcost/index')}>CANCEL</button>
+                        <button
+                            id='cancel'
+                            onClick={() => navigate('/manufacturing/businessinfo/estcost/index')}>
+                            CANCEL
+                        </button>
                     </div>
                 </div>
             </div>

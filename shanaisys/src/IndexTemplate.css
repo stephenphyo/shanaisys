@@ -19,13 +19,47 @@
     height: fit-content;
     min-height: calc(100vh - var(--header-height));
     font-family: "Helvetica Neue";
-    background-color: rgba(207, 200, 200, 0.5);
+    background-color: rgba(200, 200, 200, 1);
 }
 
 .index input:focus, .index select:focus {
     border-color: #8ad4ee;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgb(32 168 216 / 25%);
+}
+
+.tooltip {
+    position: relative;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.tooltip::before {
+    content: attr(tooltip);
+    display: none;
+    position: absolute;
+    padding: 3px 10px;
+    white-space: nowrap;
+    border-radius: 5px;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.tooltip:hover::before {
+    display: block;
+ }
+
+.tooltip.top::before {
+    top: -25px;
+    left: -15px;
+}
+
+.tooltip.bottom::before {
+    right: 55px;
 }
 
 .index__controller {
@@ -114,7 +148,7 @@
     box-sizing: border-box;
 }
 
-.index__page__bar {
+.index__infobar {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -122,18 +156,17 @@
     height: fit-content;
     padding: 0 10px;
     box-sizing: border-box;
-    gap: 15px;
     /* background-color: yellow; */
 }
 
-.index__page__bar input, .index__page__bar select {
+.index__infobar input, .index__infobar select {
     display: flex;
     align-items: center;
     justify-content: center;
     width: fit-content;
     max-width: 150px;
     height: 28px;
-    padding: 3px 15px;
+    padding: 3px 5px;
     box-sizing: border-box;
     border: 1px solid lightgray;
     border-radius: 15px;
@@ -142,16 +175,25 @@
     transition: 0.25s;
 }
 
-.index__page__show {
+.index__infobar__status {
+    display: flex;
+    flex-direction: row;
     flex: 1;
+    gap: 5px;
 }
 
-.index__page__rows select {
+.index__infobar__nav {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.index__infobar__rows select {
     height: 25px;
     padding: 3px 2px 3px 5px;
 }
 
-.index__page__nav {
+.index__infobar__page {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -159,16 +201,16 @@
     /* background-color: pink; */
 }
 
-.index__page__nav svg {
+.index__infobar__page svg {
     font-size: 17px;
 }
 
-.index__page__nav svg:hover {
+.index__infobar__page svg:hover {
     color: blue;
     cursor: pointer;
 }
 
-.index__page__nav input {
+.index__infobar__page input {
     height: 25px;
     width: 40px;
     margin: 0 5px;
@@ -180,50 +222,118 @@
     font-size: 14px;
 }
 
-.index__filter__bar {
+.index__filterbar {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: right;
     justify-content: center;
     width: 95%;
     height: fit-content;
-    padding: 15px 10px;
+    padding: 5px 10px;
     box-sizing: border-box;
     margin-top: 10px;
     border-radius: 10px;
-    gap: 10px;
     background-color: skyblue;
 }
 
-.index__filter__row {
+.index__filterbar__print {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 40px;
+    gap: 10px;
+    /* width: 300px; */
+    /* background-color: #90ee90; */
+}
+
+.index__filterbar__print button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+}
+
+.index__filterbar__print img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.index__filterbar__header {
+    display: flex;
+    justify-content: left;
+}
+
+.index__filterbar__select {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    margin-left: 10px;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.index__filterbar__select p:hover {
+    color: blue;
+}
+
+.index__filterbar__dropdown {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    user-select: none;
+    transition: 0.15s;
+    cursor: pointer;
+}
+
+.index__filterbar__dropdown:hover {
+    color: blue;
+}
+
+.index__filterbar__dropdown svg {
+    transition: 0.25s;
+}
+
+.index__filterbar__dropdown.showFilterBar svg {
+    transform: rotate(180deg);
+}
+
+.index__filterbar__row {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: left;
+    margin: 10px 0;
+    /* background-color: #90ee90; */
 }
 
-.index__filter__box {
+.index__filterbar__box {
     display: flex;
     flex-direction: column;
     align-items: left;
     justify-content: center;
-    width: 25%;
+    width: 20%;
     gap: 5px;
     /* background-color: aqua; */
 }
 
-.index__filter__box label{
-    margin-left: 5px;
+.index__filterbar__box label{
+    margin-left: 10px;
 }
 
-.index__filter__box input, .index__filter__box select {
+.index__filterbar__box input, .index__filterbar__box select {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 90%;
     max-width: 150px;
     height: 28px;
-    padding: 3px 10px;
+    padding: 3px 14px;
     box-sizing: border-box;
     border: 1px solid lightgray;
     border-radius: 15px;
@@ -285,6 +395,10 @@
     border-bottom: 1px solid lightgray;
 }
 
+.index__tr.highlighted {
+    background-color: rgba(135, 206, 235, 0.8);
+}
+
 .index__td {
     display: flex;
     align-items: center;
@@ -304,6 +418,10 @@
     border-right: 1px solid white;
 }
 
+.index__td #checkbox {
+    cursor: pointer;
+}
+
 .index__td__status {
     width: 100%;
     height: 50%;
@@ -321,37 +439,11 @@
     background-color: red;
 }
 
-.action {
-    position: relative;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.action::before {
-    content: attr(tooltip);
-    display: none;
-    position: absolute;
-    top: -25px;
-    left: -10px;
-    padding: 3px 10px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 5px;
-    font-family: "Helvetica Neue";
-    font-size: 14px;
-    z-index: 1;
-}
-
-.action:hover::before {
-    display: block;
- }
-
- .action:hover #view {
+#view:hover {
     color: green;
  }
 
- .action:hover #delete {
+#delete:hover {
     color: red;
  }
 
@@ -373,4 +465,29 @@
 }
 .index__table__scroll::-webkit-scrollbar-thumb:active {
     background: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 800px) {
+    /* .index__infobar {
+        flex-direction: column;
+    } */
+    .index__infobar__status {
+        flex-direction: column;
+    }
+
+    .index__infobar__nav {
+        flex-direction: column;
+        align-items: right;
+        justify-content: right;
+        text-align: right;
+    }
+
+    .index__infobar__rows {
+        display: flex;
+        justify-content: center;
+    }
+
+    .index__filterbar__box {
+        width: 25%;
+    }
 }

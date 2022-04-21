@@ -21,42 +21,42 @@ function MF_Manufacturing() {
                         <div className="manufacture__col__body">
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/inquiry')}>
+                                onClick={() => navigate('/manufacturing/businessinfo/inquiry')}>
                                 Inquiry Input
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/estcost/index')}>
+                                onClick={() => navigate('/manufacturing/businessinfo/estcost/index')}>
                                 Estimated Cost
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/estinput')}>
+                                onClick={() => navigate('/manufacturing/businessinfo/estinput')}>
                                 Estimated Input
                             </button>
                             <button
                                 className='black'
-                                onClick={() => navigate('/manufacturing/edicapture')}>
+                                onClick={() => navigate('/manufacturing/businessinfo/edicapture')}>
                                 EDI Capture
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/orderentry')}>
+                                onClick={() => navigate('/manufacturing/businessinfo/orderentry')}>
                                 Order Entry
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/orderlist')}>
+                                onClick={() => navigate('/manufacturing/businessinfo/orderlist')}>
                                 Order List
                             </button>
                             <button
                                 className='black'
-                                onClick={() => navigate('/manufacturing/salesinput')}>
+                                onClick={() => navigate('/manufacturing/businessinfo/salesinput')}>
                                 Sales Input
                             </button>
                             <button
                                 className='black'
-                                onClick={() => navigate('/manufacturing/shipping')}>
+                                onClick={() => navigate('/manufacturing/businessinfo/shipping')}>
                                 Shipping
                             </button>
                         </div>
@@ -68,27 +68,27 @@ function MF_Manufacturing() {
                         <div className="manufacture__col__body">
                             <button
                                 className='black'
-                                onClick={() => navigate('/manufacturing/shipping')}>
+                                onClick={() => navigate('/manufacturing/prodinfo/shipping')}>
                                 Production Plan Input
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/shipping')}>
+                                onClick={() => navigate('/manufacturing/prodinfo/shipping')}>
                                 Production Planning Data
                             </button>
                             <button
                                 className='black'
-                                onClick={() => navigate('/manufacturing/shipping')}>
+                                onClick={() => navigate('/manufacturing/prodinfo/shipping')}>
                                 Process Setting
                             </button>
                             <button
                                 className='black'
-                                onClick={() => navigate('/manufacturing/shipping')}>
+                                onClick={() => navigate('/manufacturing/prodinfo/invsys/index')}>
                                 Inventory System
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/shipping')}>
+                                onClick={() => navigate('/manufacturing/prodinfo/processreg/index')}>
                                 Product Process Registration
                             </button>
                         </div>

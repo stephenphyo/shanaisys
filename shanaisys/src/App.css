@@ -33,11 +33,8 @@
     align-items: center;
     justify-content: right;
     width: 30px;
-    /* width: var(--sidebar-width);
-    min-width: var(--sidebar-width-min); */
     height: 100%;
     transition: 0.25s;
-    /* background-color: #ffcd3c; */
 }
 
 .app__header__menu button {

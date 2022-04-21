@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Axios from '../../utils/Axios';
-import '../../FormTemplate.css';
+import Axios from '../../../utils/Axios';
+import '../../../FormTemplate.css';
 import './MF_EstCost_Create.css';
 
 /* MUI Imports */
@@ -328,7 +328,7 @@ function MF_EstCost_View() {
                     </div>
                     <div className="form__row footer">
                         <button id='save'>EDIT</button>
-                        <button id='cancel' onClick={() => navigate('/manufacturing/estcost/index')}>CANCEL</button>
+                        <button id='cancel' onClick={() => navigate('/manufacturing/businessinfo/estcost/index')}>CANCEL</button>
                     </div>
                 </div>
             </div>
