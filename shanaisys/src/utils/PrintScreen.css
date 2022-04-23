@@ -1,0 +1,66 @@
+@font-face {
+    font-family: "Helvetica Neue";
+    src: local("../public/fonts/HelveticaNeue Medium.ttf");
+}
+
+.print__screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+    max-height: 100vh;
+    font-family: "Helvetica Neue";
+    background-color: white;
+    z-index: 1100;
+}
+
+.print__screen h2 {
+    text-align: left;
+    padding: 20px;
+    padding-bottom: 10px;
+    text-decoration: underline;
+}
+
+.print__screen p {
+    text-align: left;
+    padding: 5px 20px;
+    font-size: 12px;
+}
+
+.print__screen table {
+    font-size: 14px;
+    margin: 0 20px;
+    max-width: 1000%;
+    border-collapse: collapse;
+}
+
+.print__screen th {
+    text-align: center;
+    padding: 3px 15px;
+    line-height: 20px;
+    border: 1px solid black;
+    white-space: wrap;
+    background-color: lightgray;
+}
+
+.print__screen td {
+    text-align: center;
+    padding: 3px 20px;
+    white-space: nowrap;
+    border: 1px solid lightgray;
+}
+
+@media print {
+    .print__screen {
+        overflow: visible !important;
+        display: block !important;
+    }
+
+    .print__screen button {
+        display: none !important;
+    }
+}

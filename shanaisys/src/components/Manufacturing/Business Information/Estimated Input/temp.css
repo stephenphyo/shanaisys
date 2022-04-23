@@ -1,0 +1,33 @@
+.wrapper {
+    position: relative;
+    /* width: 100vw; */
+  }
+
+  /*
+  *  The .navi properties are for styling only
+  *  These properties can be changed or removed
+  */
+  .navi {
+    background-color: blue;
+    height: 40px;
+    width: 40px;
+  }
+
+
+  /*
+  *  Position the #infoi element in the top-right
+  *  of the .wrapper element
+  */
+  #infoi {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255, 255, 0, 0.5);
+
+    /*
+    *  Styling only, the below can be changed or removed
+    *  depending on your use case
+    */
+  }

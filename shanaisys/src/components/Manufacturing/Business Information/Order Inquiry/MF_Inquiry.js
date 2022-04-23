@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import Axios from "../../../utils/Axios";
-import "../../../FormTemplate.css";
+import "styles/FormTemplate.css";
+
+/* Utility Imports */
+import Axios from "utils/Axios";
 
 function MF_form() {
+
   /* useState */
   const [inquiryDegree, setInquiryDegree] = useState("");
   const [personInCharge, setPersonInCharge] = useState("");

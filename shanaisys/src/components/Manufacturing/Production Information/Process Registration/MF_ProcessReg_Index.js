@@ -1,18 +1,18 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Axios from "../../../utils/Axios";
+import "styles/IndexTemplate.css";
+
+/* Utility Imports */
+import LoadingPage from "utils/LoadingPage";
+import Axios from "utils/Axios";
+
+/* Miscellaneous Imports */
 import { CSVLink } from 'react-csv';
-import { saveAs as FileSaver }  from 'file-saver';
-import * as XLSX from 'xlsx';
-import "../../../IndexTemplate.css";
 
-/* Component Imports */
-import LoadingPage from "../../../components/LoadingPage";
-
-/* Icons Export */
-import excel from "../../../icons/EXCEL256.png";
-import csv from "../../../icons/CSV256.png";
-import pdf from "../../../icons/PDF256.png";
+/* Icon Imports */
+import excel from "icons/EXCEL256.png";
+import csv from "icons/CSV256.png";
+import pdf from "icons/PDF256.png";
 
 /* MUI Imports */
 import CachedIcon from "@mui/icons-material/Cached";
@@ -27,32 +27,31 @@ import PrintIcon from '@mui/icons-material/Print';
 
 /* Reducer */
 const reducer = (state, action) => {
-    switch (action.type) {
-        case "FETCH_REQUEST":
-            return { ...state, loading: true };
-        case "FETCH_SUCCESS":
-            return { ...state, loading: false, results: action.payload };
-        case "FETCH_FAILED":
-            return { ...state, loading: false, error: action.payload };
-        case "FILTER_RESULTS":
-            return { ...state, filter_results: action.payload };
-        case "SELECTED_ALL_RESULTS":
-            return { ...state, results: action.payload };
-        case "SELECTED_ONLY_RESULTS":
-            return { ...state, selected_results: action.payload };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case "FETCH_REQUEST":
+      return { ...state, loading: true };
+    case "FETCH_SUCCESS":
+      return { ...state, loading: false, results: action.payload };
+    case "FETCH_FAILED":
+      return { ...state, loading: false, error: action.payload };
+    case "FILTER_RESULTS":
+      return { ...state, filter_results: action.payload };
+    case "SELECTED_ALL_RESULTS":
+      return { ...state, results: action.payload };
+    case "SELECTED_ONLY_RESULTS":
+      return { ...state, selected_results: action.payload };
+    default:
+      return state;
+  }
 };
 
 const initialState = {
     loading: false, results: [], filter_results: [], selected_results: [], error: "",
 };
 
-function MF_EstCost_Index() {
-
+function MF_ProcessReg_Index() {
     /* useNavigate */
-    const navigate = useNavigate();
+    const navigate = useNavigate("");
 
     /* useReducer */
     const [{ loading, results, filter_results, selected_results }, dispatch] = useReducer(
@@ -65,12 +64,10 @@ function MF_EstCost_Index() {
     const [curPage, setCurPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [filterObj, setFilterObj] = useState({
-        customer_name: '', customer_approved: '',
-        drawing_id: '', product_name: ''
+        customer_name: "",
     });
     const [filterBar, toggleFilterBar] = useState(false);
     const [selectAll, setSelectAll] = useState(false);
-    const [selectAllFilter, setSelectAllFilter] = useState(false);
 
     /* Functions */
     const fetch = async() => {
@@ -93,7 +90,7 @@ function MF_EstCost_Index() {
     };
 
     const deleteEntry = (id) => {
-        Axios.delete(`/manufacturing/estcost/delete/${id}`)
+        Axios.delete(`/manufacturing/prodinfo/processreg/delete/${id}`)
             .then((res) => {
                 console.log(res.message);
                 console.log(res.error && res.error);
@@ -102,27 +99,7 @@ function MF_EstCost_Index() {
             .catch((err) => {
                 console.log(err);
             });
-    };
-
-    const handleSelectAll = () => {
-        setSelectAllFilter(true);
-        const initialResults = results;
-        initialResults.map(result => result.isChecked = true);
-        dispatch({ type: 'SELECTED_ALL_RESULTS', payload: initialResults });
-
-        const checkedResults = results.filter((result) => (result.isChecked === true));
-        dispatch({ type: "SELECTED_ONLY_RESULTS", payload: checkedResults });
-    }
-
-    const handleDeselectAll = () => {
-        setSelectAllFilter(false);
-        const initialResults = results;
-        initialResults.map(result => result.isChecked = false);
-        dispatch({ type: 'SELECTED_ALL_RESULTS', payload: initialResults });
-
-        const checkedResults = results.filter((result) => (result.isChecked === true));
-        dispatch({ type: "SELECTED_ONLY_RESULTS", payload: checkedResults });
-    }
+        };
 
     const handleCheckedRows = (id) => {
         const initialResults = results;
@@ -136,15 +113,16 @@ function MF_EstCost_Index() {
         console.log(selected_results)
     };
 
-    const handleSelectAllFilter = (filterResults) => {
-        setSelectAllFilter(!selectAllFilter);
+    const handleSelectAll = (filterResults) => {
+        setSelectAll(!selectAll);
 
         const initialResults = results;
         const currentFilterResults = filterResults.slice(pageRows * (curPage - 1), pageRows * curPage);
         currentFilterResults.map((filterResult) => {
             const checkedIndex = initialResults.findIndex((result) => result.id === filterResult.id);
-            initialResults[checkedIndex].isChecked = !selectAllFilter;
+            initialResults[checkedIndex].isChecked = !selectAll;
             dispatch({ type: "SELECTED_ALL_RESULTS", payload: initialResults });
+            return null;
         });
 
         const checkedResults = results.filter((result) => (result.isChecked === true));
@@ -188,11 +166,7 @@ function MF_EstCost_Index() {
         const newResults = results.filter(
             (result) =>
                 result.company_name_1.includes(filterObj.customer_name) &&
-                (filterObj.customer_approved !== ''
-                    ? result.customer_approved === filterObj.customer_approved
-                    : true) &&
-                result.drawing_id.includes(filterObj.drawing_id) &&
-                result.product_name.includes(filterObj.product_name)
+                result.customer_approved === filterObj.customer_approved
         );
         dispatch({ type: "FILTER_RESULTS", payload: newResults });
 
@@ -203,7 +177,7 @@ function MF_EstCost_Index() {
     }, [filterObj]);
 
     useEffect(() => {
-        setSelectAllFilter(false);
+        setSelectAll(false);
     }, [curPage, pageRows, filterObj]);
 
     /* Custom Properties */
@@ -227,23 +201,12 @@ function MF_EstCost_Index() {
         { label: "Product Sale Price", key: "product_sale_price" }
     ];
 
-    const ExcelExport = (ExcelData, ExcelFileName) => {
-        const ExcelFileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-        const ExcelFileExtension = '.xlsx';
-        const worksheet = XLSX.utils.json_to_sheet(ExcelData);
-        const workbook = { Sheets: { 'Estimated Costs': worksheet }, SheetNames: ['Estimated Costs'] };
-        const ExcelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-        const ExcelBlob = new Blob([ExcelBuffer], { type: ExcelFileType });
-        FileSaver.saveAs(ExcelBlob, ExcelFileName + ExcelFileExtension);
-    };
-
-
     return (
         <div className="index">
             <div className="index__controller">
                 <button
                     className="addEntry"
-                    onClick={() => navigate("/manufacturing/businessinfo/estcost/create")} >
+                    onClick={() => navigate("/manufacturing/prodinfo/processreg/create")} >
                     Add an entry
                 </button>
                 <button
@@ -262,70 +225,59 @@ function MF_EstCost_Index() {
                     </div>
                 </div>
                 <div className="index__body">
-                    <div className="index__infobar">
-                        <div className="index__infobar__status">
-                            <p>{`${curPage} out of ${totalPages} pages`}</p>
-                            <p>{`(${selected_results.length} selected out of ${results.length} total records)`}</p>
-                            <p>{totalRecords !== results.length && `(filtered ${totalRecords} records)`}</p>
+                    <div className="index__page__bar">
+                        <div className="index__page__show">
+                            <p>
+                                {`${curPage} out of ${totalPages} pages`}
+                                <span>{`(${selected_results.length} out of ${totalRecords} records)`}</span>
+                            </p>
                         </div>
-                        <div className="index__infobar__nav">
-                            <div className="index__infobar__rows">
-                                <select onChange={(e) => setPageRows(e.target.value)}>
-                                    <option value={10}>10 rows</option>
-                                    <option value={25}>25 rows</option>
-                                    <option value={50}>50 rows</option>
-                                    <option value={100}>100 rows</option>
-                                </select>
-                            </div>
-                            <div className="index__infobar__page">
-                                <KeyboardDoubleArrowLeftIcon
-                                    onClick={() => setCurPage(curPage - 5 <= 0 ? 1 : curPage - 5)} />
-                                <KeyboardArrowLeftIcon
-                                    onClick={() => setCurPage(curPage - 1 === 0 ? 1 : curPage - 1)} />
-                                <input
-                                    id="page"
-                                    value={curPage}
-                                    onChange={(e) => handlePageInput(e)} />
-                                <KeyboardArrowRightIcon
-                                    onClick={() => setCurPage(
-                                        curPage + 1 > totalPages ? totalPages : curPage + 1)} />
-                                <KeyboardDoubleArrowRightIcon
-                                    onClick={() => setCurPage(
-                                        curPage + 5 > totalPages ? totalPages : curPage + 5)} />
-                            </div>
+                        <div className="index__page__rows">
+                            <select onChange={(e) => setPageRows(e.target.value)}>
+                                <option value={10}>10 rows</option>
+                                <option value={25}>25 rows</option>
+                                <option value={50}>50 rows</option>
+                                <option value={100}>100 rows</option>
+                            </select>
+                        </div>
+                        <div className="index__page__nav">
+                            <KeyboardDoubleArrowLeftIcon
+                                onClick={() => setCurPage(curPage - 5 <= 0 ? 1 : curPage - 5)} />
+                            <KeyboardArrowLeftIcon
+                                onClick={() => setCurPage(curPage - 1 === 0 ? 1 : curPage - 1)} />
+                            <input
+                                id="page"
+                                value={curPage}
+                                onChange={(e) => handlePageInput(e)} />
+                            <KeyboardArrowRightIcon
+                                onClick={() => setCurPage(
+                                    curPage + 1 > totalPages ? totalPages : curPage + 1)} />
+                            <KeyboardDoubleArrowRightIcon
+                                onClick={() => setCurPage(
+                                    curPage + 5 > totalPages ? totalPages : curPage + 5)} />
                         </div>
                     </div>
-                    <div className="index__filterbar">
-                        <div className="index__filterbar__header">
-                            <div className="index__filterbar__select">
-                                <p onClick={() => handleSelectAll()}>Select All</p>
-                                <p onClick={() => handleDeselectAll()}>Deselect All</p>
-                            </div>
-                            <div className="index__filterbar__print">
-                                <button
-                                    className="tooltip top"
-                                    tooltip="Download Excel File"
-                                    onClick={() =>
-                                        ExcelExport(
-                                            selected_results,
-                                            `estimated-cost_${currentdatetime}`)}>
-                                    <img src={excel} />
+                    <div className="index__filter__bar">
+                        <div className="index__filter__dropdown">
+                            <div className="index__print">
+                                <button className="tooltip top" tooltip="Download Excel File">
+                                    <img src={excel} alt='excel' />
                                 </button>
-                                <CSVLink
-                                    data={selected_results}
-                                    headers={CSVHeaders}
-                                    filename={`estimated-cost_${currentdatetime}` + '.csv'} >
-                                    <button className="tooltip top" tooltip="Download CSV">
-                                        <img src={csv} />
-                                    </button>
-                                </CSVLink>
+                                <button className="tooltip top" tooltip="Download CSV">
+                                    {/* <CSVLink
+                                        data={selected_results}
+                                        headers={CSVHeaders}
+                                        filename={`estimated-cost_${currentdatetime}` + '.csv'} > */}
+                                        <img src={csv} alt='csv' />
+                                    {/* </CSVLink> */}
+                                </button>
                                 <button className="tooltip top" tooltip="Download PDF">
-                                    <img src={pdf} />
+                                    <img src={pdf} alt='pdf' />
                                 </button>
                                 <PrintIcon onClick={() => console.log(selected_results)}/>
                             </div>
                             <div
-                                className={`index__filterbar__dropdown ${filterBar ? 'showFilterBar' : ''}`}
+                                className={`index__filter__dropdown__btn ${filterBar ? 'showFilterBar' : ''}`}
                                 onClick={() => toggleFilterBar(!filterBar)}>
                                 <p>Filter</p>
                                 <ArrowDropDownIcon />
@@ -334,18 +286,20 @@ function MF_EstCost_Index() {
                         {
                             filterBar && (
                                 <>
-                                    <div className="index__filterbar__row">
-                                        <div className="index__filterbar__box">
+                                    <div className="index__filter__row">
+                                        <div className="index__filter__box">
                                             <label>Customer Approved</label>
                                             <select
                                                 onChange={(e) => setFilterObj(
                                                     { ...filterObj, customer_approved: e.target.value })}>
-                                                <option value="">All</option>
+                                                <option value="" hidden>
+                                                    Approved?
+                                                </option>
                                                 <option value="Y">Yes</option>
                                                 <option value="NO">No</option>
                                             </select>
                                         </div>
-                                        <div className="index__filterbar__box">
+                                        <div className="index__filter__box">
                                             <label>Customer Name</label>
                                             <input
                                                 type="text"
@@ -355,25 +309,19 @@ function MF_EstCost_Index() {
                                                     ...filterObj, customer_name: e.target.value
                                                 })} />
                                         </div>
-                                        <div className="index__filterbar__box">
-                                            <label>Drawing ID</label>
-                                            <input
-                                                type="text"
-                                                placeholder="Drawing ID"
-                                                value={filterObj.drawing_id}
-                                                onChange={(e) => setFilterObj({
-                                                    ...filterObj, drawing_id: e.target.value
-                                                })} />
-                                        </div>
-                                        <div className="index__filterbar__box">
-                                            <label>Product Name</label>
-                                            <input
-                                                type="text"
-                                                placeholder="Product Name"
-                                                value={filterObj.product_name}
-                                                onChange={(e) => setFilterObj({
-                                                    ...filterObj, product_name: e.target.value
-                                                })} />
+                                    </div>
+                                    <div className="index__filter__row">
+                                        <div className="index__filter__box">
+                                            <label>Customer Approved</label>
+                                            <select
+                                                onChange={(e) => setFilterObj(
+                                                    { ...filterObj, customer_approved: e.target.value })}>
+                                                <option value="" hidden>
+                                                    Approved?
+                                                </option>
+                                                <option value="Y">Yes</option>
+                                                <option value="NO">No</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </>
@@ -387,8 +335,8 @@ function MF_EstCost_Index() {
                                     <input
                                         type="checkbox"
                                         id="checkbox"
-                                        checked={selectAllFilter}
-                                        onChange={() => handleSelectAllFilter(filter_results)} />
+                                        checked={selectAll}
+                                        onChange={() => handleSelectAll(filter_results)} />
                                 </div>
                                 <div className="index__td" style={{ width: "50px" }}>No.</div>
                                 <div className="index__td" style={{ width: "300px" }}>Customer Name</div>
@@ -478,4 +426,4 @@ function MF_EstCost_Index() {
     );
 }
 
-export default MF_EstCost_Index;
+export default MF_ProcessReg_Index;

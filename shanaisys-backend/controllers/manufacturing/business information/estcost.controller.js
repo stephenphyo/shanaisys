@@ -1,4 +1,4 @@
-const mysqlPool = require('../../database/mysqldb.js');
+const mysqlPool = require('../../../database/mysqldb.js');
 
 const estcostCtrl = {
 

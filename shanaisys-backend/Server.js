@@ -12,6 +12,6 @@ app.use(express.json());
 
 /* Routes */
 app.get('/', (req, res) => {res.status(200).send('Server is running')});
-app.use('/manufacturing', require('./routes/manufacturing.route'));
+app.use('/manufacturing', require('./routes/manufacturing/manufacturing.route'));
 
 app.listen(PORT, () => { console.log(`Server is listening on PORT: ${PORT}`) });

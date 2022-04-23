@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router';
-import Axios from '../../../utils/Axios';
-import '../../../FormTemplate.css';
+
+import 'styles/FormTemplate.css';
 import './DynamicTableTemplate.css';
+
+/* Utility Imports */
+import Axios from 'utils/Axios';
 
 /* MUI Imports */
 import AddCircleIcon from '@mui/icons-material/AddCircle';

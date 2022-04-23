@@ -31,7 +31,7 @@ function MF_Manufacturing() {
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/businessinfo/estinput')}>
+                                onClick={() => navigate('/manufacturing/businessinfo/estinput/index')}>
                                 Estimated Input
                             </button>
                             <button
@@ -105,18 +105,18 @@ function MF_Manufacturing() {
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/shipping')}>
-                                Purchase Application Input
+                                onClick={() => navigate('/manufacturing/purchase/requisition/create')}>
+                                Purchase Requisition
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/shipping')}>
-                                Purchase Approval Input
+                                onClick={() => navigate('/manufacturing/purchase/approval/create')}>
+                                Purchase Approval
                             </button>
                             <button
                                 className='blue'
-                                onClick={() => navigate('/manufacturing/shipping')}>
-                                Order Entry
+                                onClick={() => navigate('/manufacturing/purchase/order')}>
+                                Purchase Order
                             </button>
                             <button
                                 className='blue'

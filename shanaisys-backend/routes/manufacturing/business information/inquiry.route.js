@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const inquiryCtrl = require("../../controllers/manufacturing/inquiry.controller.js");
+const inquiryCtrl = require("../../../controllers/manufacturing/business information/inquiry.controller.js");
 
 /* GET */
 router.get("/index", inquiryCtrl.index);

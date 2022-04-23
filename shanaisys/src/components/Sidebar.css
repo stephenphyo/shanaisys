@@ -82,3 +82,9 @@
     height: calc(100vh - var(--header-height));
   }
 }
+
+@media only print {
+  .sidebar {
+    display: none !important;
+  }
+}

@@ -1,8 +1,10 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Axios from '../../../utils/Axios';
-import '../../../FormTemplate.css';
+import 'styles/FormTemplate.css';
 import './MF_EstCost_Create.css';
+
+/* Utility Imports */
+import Axios from 'utils/Axios';
 
 /* MUI Imports */
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -60,7 +62,7 @@ function MF_EstCost_View() {
     useEffect(() => {
         dispatch({ type: 'FETCH_REQUEST' });
         Axios
-            .get(`/manufacturing/estcost/view/${estcostId}`)
+            .get(`/manufacturing/businessinfo/estcost/view/${estcostId}`)
             .then((res) => {
                 dispatch({ type: 'FETCH_SUCCESS', payload: res.data })
             })

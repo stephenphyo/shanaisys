@@ -1,11 +1,11 @@
-const mysqlPool = require("../../database/mysqldb.js");
+const mysqlPool = require("../../../database/mysqldb.js");
 
 const inquiryCtrl = {
   create: (req, res) => {
     mysqlPool.getConnection((err, conn) => {
       if (!err) {
         let r = req.body;
-        const query = `INSERT INTO inquiries 
+        const query = `INSERT INTO inquiries
                 ('inquiry_degree', 'employee_id', 'contact_name',
                 'department_id', 'department_name', 'customer_id',
                 'customer_name', 'customer_contact_name',

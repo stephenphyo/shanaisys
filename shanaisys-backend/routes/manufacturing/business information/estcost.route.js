@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const estcostCtrl = require('../../controllers/manufacturing/estcost.controller.js');
+const estcostCtrl = require('../../../controllers/manufacturing/business information/estcost.controller.js');
 
 /* GET */
 router.get('/index', estcostCtrl.index);

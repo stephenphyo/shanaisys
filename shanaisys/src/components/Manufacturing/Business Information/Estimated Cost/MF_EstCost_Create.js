@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Axios from '../../../utils/Axios';
-import '../../../FormTemplate.css';
+import 'styles/FormTemplate.css';
 import './MF_EstCost_Create.css';
 
+/* Utility Imports */
+import Axios from 'utils/Axios';
+
 /* test */
-import seeds from '../../../seed1.json';
+import seeds from 'seed1.json';
 
 /* MUI Imports */
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -180,7 +182,7 @@ function MF_EstCost_Create() {
             }
 
             Axios
-                .post('/manufacturing/estcost/create', result)
+                .post('/manufacturing/businessinfo/estcost/create', result)
                 .then((res) => {
                     console.log(res);
                     navigate('/manufacturing/businessinfo/estcost/index');
